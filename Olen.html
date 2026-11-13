@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="eu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Olen | Erloju-denda</title>
+<style>
+:root {
+  --black: #111111;
+  --gold: #c9a44c;
+  --cream: #f7f5ef;
+  --white: #ffffff;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: var(--cream);
+  color: var(--black);
+}
+header {
+  background: var(--black);
+  color: white;
+  padding: 22px 8%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+.logo {
+  font-family: Georgia, serif;
+  font-size: 29px;
+  letter-spacing: 4px;
+  color: var(--gold);
+}
+nav { display: flex; gap: 25px; flex-wrap: wrap; }
+nav a {
+  color: white;
+  text-decoration: none;
+  font-size: 14px;
+}
+nav a:hover { color: var(--gold); }
+
+.hero {
+  min-height: 490px;
+  background: linear-gradient(90deg,
+    rgba(0,0,0,.88), rgba(0,0,0,.35)),
+    url('https://images.unsplash.com/photo-1524592094714-0f0654e20314?auto=format&fit=crop&w=1800&q=85')
+    center/cover;
+  display: flex;
+  align-items: center;
+  padding: 70px 10%;
+  color: white;
+}
+.hero-content { max-width: 600px; }
+.hero h1 {
+  font-family: Georgia, serif;
+  font-size: clamp(42px, 6vw, 70px);
+  margin-bottom: 20px;
+}
+.hero h1 span { color: var(--gold); }
+.hero p {
+  font-size: 18px;
+  line-height: 1.7;
+  margin-bottom: 30px;
+}
+.btn {
+  display: inline-block;
+  padding: 14px 28px;
+  background: var(--gold);
+  color: black;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  transition: .3s;
+}
+.btn:hover { background: white; }
+
+section { padding: 75px 8%; }
+.section-title {
+  font-family: Georgia, serif;
+  font-size: 38px;
+  text-align: center;
+  margin-bottom: 12px;
+}
+.subtitle {
+  text-align: center;
+  color: #777;
+  margin-bottom: 45px;
+}
+.products {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(230px,1fr));
+  gap: 28px;
+}
+.product {
+  background: white;
+  border: 1px solid #e9e3d7;
+  transition: .3s;
+  overflow: hidden;
+}
+.product:hover {
+  transform: translateY(-7px);
+  box-shadow: 0 12px 30px #00000012;
+}
+.product img {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+  background: #e8e4dc;
+}
+.product-info { padding: 22px; }
+.product h3 {
+  font-family: Georgia, serif;
+  font-size: 20px;
+  margin-bottom: 12px;
+}
+.product p {
+  color: #777;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+.price {
+  color: #a47d2b;
+  font-weight: bold;
+  margin: 15px 0;
+}
+.product button {
+  width: 100%;
+  padding: 13px;
+  border: none;
+  background: var(--black);
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+}
+.product button:hover { background: var(--gold); color: black; }
+
+.cart {
+  background: var(--black);
+  color: white;
+  text-align: center;
+}
+.cart .section-title { color: var(--gold); }
+#cart-items {
+  max-width: 650px;
+  margin: 25px auto;
+  text-align: left;
+}
+.cart-item {
+  padding: 15px;
+  border-bottom: 1px solid #444;
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+}
+.remove {
+  color: var(--gold);
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+.cart-form {
+  max-width: 500px;
+  margin: 30px auto 0;
+  display: grid;
+  gap: 13px;
+}
+.cart-form input, .cart-form textarea {
+  padding: 14px;
+  border: 1px solid #555;
+  background: #222;
+  color: white;
+  font: inherit;
+  width: 100%;
+}
+.cart-form textarea { min-height: 90px; }
+.cart-form button { font-size: 15px; }
+
+.info {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(260px,1fr));
+  gap: 35px;
+}
+.info-card {
+  background: white;
+  padding: 35px;
+  border-top: 3px solid var(--gold);
+}
+.info-card h3 {
+  font-family: Georgia, serif;
+  font-size: 24px;
+  margin-bottom: 18px;
+}
+.info-card p { line-height: 2; color: #555; }
+.map {
+  margin-top: 45px;
+  width: 100%;
+  height: 350px;
+  border: 0;
+}
+footer {
+  text-align: center;
+  background: var(--black);
+  color: #aaa;
+  padding: 28px;
+  font-size: 13px;
+}
+footer span { color: var(--gold); }
+
+@media(max-width:600px) {
+  header { justify-content: center; }
+  nav { justify-content: center; gap: 15px; }
+  .hero { min-height: 420px; }
+  section { padding: 55px 6%; }
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo-img {
+  width: 55px;
+  height: 55px;
+  object-fit: contain;
+}
+
+.logo {
+  font-family: Georgia, serif;
+  font-size: 25px;
+  letter-spacing: 3px;
+  color: #c9a44c;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="brand">
+    <img src="Logo empresa.png" alt="Olen Erlojuak logoa" class="logo-img">
+    <div class="logo">OLEN ERLOJUAK</div>
+  </div>
+
+  <nav>
+    <a href="#hasiera">Hasiera</a>
+    <a href="#produktuak">Erlojuak</a>
+    <a href="#saskia">Erosketa</a>
+    <a href="#kontaktua">Kontaktua</a>
+  </nav>
+</header>
+
+<div class="hero" id="hasiera">
+  <div class="hero-content">
+    <h1>Denboraren <span>dotorezia</span></h1>
+    <p>
+      Estiloa, kalitatea eta nortasuna eskumutur bakoitzean.
+      Aurkitu zuretzako erloju perfektua gure bilduman.
+    </p>
+    <a href="#produktuak" class="btn">IKUSI ERLOJUAK</a>
+  </div>
+</div>
+
+<section id="produktuak">
+  <h2 class="section-title">Gure bilduma</h2>
+  <p class="subtitle">Aukeratu zure estiloarekin bat datorren erlojua.</p>
+
+  <div class="products">
+
+    <article class="product">
+      <img src="https://www.casio.com/content/dam/casio/product-info/locales/sg/en/timepiece/product/watch/L/LA/LA6/la680wemg-9a/assets/LA680WEMG-9A.png.transform/main-visual-sp/image.png" alt="Urre koloreko Casio erlojua">
+      <div class="product-info">
+        <h3>Casio LA680WEGS-9</h3>
+        <p>Kolorea: Urrea</p>
+        <p>Diseinu klasiko eta dotorea.</p>
+        <div class="price">129 €</div>
+        <button onclick="addCart('Casio LA680WEGS-9')">
+          Saskira gehitu
+        </button>
+      </div>
+    </article>
+
+    <article class="product">
+      <img src="https://joyayreloj.com/18093-large_default/reloj-casio-edifice-hombre-efv-160d-1avef.jpg" alt="Zilar koloreko Casio erlojua">
+      <div class="product-info">
+        <h3>Casio EFV-160D-1AV</h3>
+        <p>Kolorea: Zilarra</p>
+        <p>Dotorezia eta estilo modernoa.</p>
+        <div class="price">195 €</div>
+        <button onclick="addCart('Casio EFV-160D-1AV')">
+          Saskira gehitu
+        </button>
+      </div>
+    </article>
+
+    <article class="product">
+      <img src="https://invicta.com.pe/cdn/shop/files/27918-67059b_530x%402x.jpg?v=1775592500" alt="Beltz koloreko Invicta erlojua">
+      <div class="product-info">
+        <h3>Invicta I-Tech 009</h3>
+        <p>Kolorea: Beltza</p>
+        <p>Nortasun handiko diseinu ausarta.</p>
+        <div class="price">270 €</div>
+        <button onclick="addCart('Invicta I-Tech 009')">
+          Saskira gehitu
+        </button>
+      </div>
+    </article>
+
+    <article class="product">
+      <img src="https://media.rolex.com/image/upload/q_auto/f_auto/t_v7-cover-majesty-landscape/c_limit%2Cw_1920/v1/a677b2c664f6/catalogue/2026/upright-c/m134303-0001" alt="Urre hori koloreko Rolex erlojua">
+      <div class="product-info">
+        <h3>Rolex Oyster Perpetual 41</h3>
+        <p>Kolorea: Urre horia</p>
+        <p>Luxua eta sofistikazioa.</p>
+        <div class="price">9.399 €</div>
+        <button onclick="addCart('Rolex Oyster Perpetual 41')">
+          Saskira gehitu
+        </button>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<section class="cart" id="saskia">
+  <h2 class="section-title">Zure erosketa-saskia</h2>
+  <p>Aukeratu dituzun erlojuak hemen ikusiko dituzu.</p>
+
+  <div id="cart-items">
+    <p>Oraindik ez duzu erlojurik aukeratu.</p>
+  </div>
+
+  <form class="cart-form" onsubmit="sendOrder(event)">
+    <h3>Eskaera bidali</h3>
+    <input id="name" type="text" placeholder="Zure izena" required>
+    <input id="email" type="email" placeholder="Zure emaila" required>
+    <textarea id="message" placeholder="Oharrak edo bidalketa-helbidea"></textarea>
+    <button class="btn" type="submit">ESKAERA BIDALI</button>
+  </form>
+</section>
+
+<section id="kontaktua">
+  <h2 class="section-title">Bisita gaitzazu</h2>
+  <p class="subtitle">Zure erloju berria Azkoitian aurkituko duzu.</p>
+
+  <div class="info">
+    <div class="info-card">
+      <h3>Gure helbidea</h3>
+      <p>
+        Aizkibel kalea, 5<br>
+        20720 Azkoitia<br>
+        Gipuzkoa, Euskal Herria
+      </p>
+    </div>
+
+    <div class="info-card">
+      <h3>Ordutegia</h3>
+      <p>
+        Astelehenetik ostiralera:<br>
+        09:30 - 13:30<br>
+        15:30 - 18:30<br><br>
+        <small>Larunbat eta igandeetako ordutegia kontsultatu.</small>
+      </p>
+    </div>
+  </div>
+
+  <iframe class="map"
+    src="https://maps.google.com/maps?q=Aizkibel%20kalea%205%2C%2020720%20Azkoitia&t=&z=16&ie=UTF8&iwloc=&output=embed"
+    loading="lazy"
+    allowfullscreen
+    title="Olen erlojuak dendaren kokapena">
+  </iframe>
+</section>
+
+<footer>
+  <p>© 2026 <span>Olen erlojuak</span> - Denboraren dotorezia.</p>
+  <p>Azkoitia, Gipuzkoa</p>
+</footer>
+
+<script>
+const products = {
+  'Casio LA680WEGS-9': 129,
+  'Casio EFV-160D-1AV': 195,
+  'Invicta I-Tech 009': 270,
+  'Rolex Oyster Perpetual 41': 9399
+};
+
+let cart = [];
+
+function formatPrice(price) {
+  return price.toLocaleString('eu-ES') + ' €';
+}
+
+function addCart(product) {
+  cart.push(product);
+  renderCart();
+}
+
+function removeCart(index) {
+  cart.splice(index, 1);
+  renderCart();
+}
+
+function renderCart() {
+  const container = document.getElementById('cart-items');
+
+  if (cart.length === 0) {
+    container.innerHTML = '<p>Oraindik ez duzu erlojurik aukeratu.</p>';
+    return;
+  }
+
+  let total = 0;
+
+  container.innerHTML = cart.map((item, index) => {
+    const price = products[item];
+    total += price;
+
+    return `
+      <div class="cart-item">
+        <span>${item} - ${formatPrice(price)}</span>
+        <button class="remove" onclick="removeCart(${index})">
+          Kendu ✕
+        </button>
+      </div>
+    `;
+  }).join('');
+
+  container.innerHTML += `
+    <div class="cart-item">
+      <strong>GUZTIRA: ${formatPrice(total)}</strong>
+    </div>
+  `;
+}
+
+function sendOrder(event) {
+  event.preventDefault();
+
+  if (cart.length === 0) {
+    alert('Mesedez, gehitu erloju bat saskira.');
+    return;
+  }
+
+  const name = document.getElementById('name').value;
+  const email = document.getElementById('email').value;
+  const message = document.getElementById('message').value;
+
+  const total = cart.reduce((sum, item) => sum + products[item], 0);
+
+  const orderList = cart.map(item =>
+    '- ' + item + ': ' + formatPrice(products[item])
+  ).join('\n');
+
+  const subject = encodeURIComponent('OLEN ERLOJUAK - Erosketa eskaera');
+
+  const body = encodeURIComponent(
+    'Bezeroa: ' + name +
+    '\nEmaila: ' + email +
+    '\n\nAukeratutako erlojuak:\n' + orderList +
+    '\n\nGUZTIRA: ' + formatPrice(total) +
+    '\n\nOharrak: ' + message
+  );
+
+  window.location.href =
+    'mailto:olenerlojuak@gmail.com?subject=' +
+    subject + '&body=' + body;
+}
+</script>
+
+</body>
+</html>
